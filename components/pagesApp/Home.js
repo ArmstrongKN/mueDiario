@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {  View, Text, StyleSheet,  FlatList, TouchableOpacity, Alert } from 'react-native';
-import Firebase from '../Firebase';
+import Firebase from '../firebase';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function Home({navigation}) { 
