@@ -1,4 +1,5 @@
-import Firebase from 'firebase'
+import Firebase from 'firebase/app';
+import { initializeApp } from 'firebase/app';
 import 'firebase/storage';
 
 const firebaseConfig = {
@@ -9,11 +10,7 @@ const firebaseConfig = {
   messagingSenderId: "400220678976",
   appId: "1:400220678976:web:399e28c52f322c8768e8a5"
 };
-if (!Firebase.apps.length){
 
-  Firebase.initializeApp(firebaseConfig);
 
-}
 
-const bdstore = Firebase.firestore();
-export default bdstore;
+export default firebaseConfig;

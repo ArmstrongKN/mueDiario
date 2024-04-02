@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import {  View, Text, StyleSheet,  FlatList, TouchableOpacity, Alert } from 'react-native';
-import Firebase from '../firebase';
+import Firebase from '../Firebase';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function Home({navigation}) { 
-
+ 
+ 
   const [diario, setDiario] = useState([]);
+
   function deleteDiario(id)
   {
     Firebase.collection("diario").doc(id).delete();
@@ -29,32 +31,32 @@ export default function Home({navigation}) {
   return (
     <View style={styles.container}>
       <View>
-        <Text style={estilo.titulo}>Lista de Dias</Text>
+        <Text style={estilo.titulo}>Meu diario</Text>
       </View>
 
       <FlatList
       data={diario}
       renderItem={({item})=>{
         return(
-          <View style={estilo.musicas}>
+          <View style={estilo.diarios}>
 
             <TouchableOpacity onPress={()=>navigation.navigate("AlterarDiario",{
               id: item.id,
-              banda: item.artistabanda,
-              genero: item.genero,
-              musica: item.musica
+              titulo: item.titulo,
+              texto: item.texto,
+              data: item.data,
+              local: item.local
               })}>
               <View style={estilo.itens}>
-                <Text style={estilo.titulobanda}> Artista/Banda: <Text style={estilo.textobanda}>{item.artistabanda}
-                </Text></Text><Text style={estilo.titulobanda}> Genêro: <Text style={estilo.textobanda}>{item.genero}
-                  </Text> </Text>
-                <Text style={estilo.titulobanda}> Música: <Text style={estilo.textobanda}>{item.musica}
-                </Text></Text>
-              </View>
+                <Text style={estilo.titulodiario}> Titulo: <Text style={estilo.textoDiario}>{item.titulo}</Text></Text>
+                <Text style={estilo.titulodiario}> texto: <Text style={estilo.textoDiario}>{item.texto}</Text> </Text>
+                <Text style={estilo.titulodiario}> Data: <Text style={estilo.textoDiario}>{item.data}</Text></Text>
+                <Text style={estilo.titulodiario}> Local: <Text style={estilo.textoDiario}>{item.local}</Text></Text>
+                </View>
             </TouchableOpacity>
 
             <View style={estilo.botaodeletar}>
-              <TouchableOpacity onPress={()=>{deleteMusica(item.id)}}>
+              <TouchableOpacity onPress={()=>{deleteDiario(item.id)}}>
               <MaterialCommunityIcons name="delete-empty" size={70} color="red"/>
               </TouchableOpacity>
             </View>
@@ -63,7 +65,7 @@ export default function Home({navigation}) {
         );
           }}
           />
-          <TouchableOpacity style={estilo.addbutton} onPress={()=> navigation.navigate("CadMusica")}>
+          <TouchableOpacity style={estilo.addbutton} onPress={()=> navigation.navigate("CadDiario")}>
             <MaterialCommunityIcons name="plus-circle-outline" size={70} color="green" />
           </TouchableOpacity>
        </View>

@@ -1,6 +1,6 @@
 import { useState, useEffect }  from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
-import  Firebase  from '../../../firebase';
+import  Firebase  from '../Firebase';
 import {getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import { initializeApp } from "@firebase/app";
 

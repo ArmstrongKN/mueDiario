@@ -2,31 +2,34 @@ import React,{useState} from 'react';
 import  {View, Text, StyleSheet, TextInput, TouchableOpacity, Alert} from 'react-native';
 import Firebase from '../Firebase';
 
-export default function AlterarDiario({navigation,route}){
-    const id = route.params.id;
-
-    const [titulo,setTitulo] = useState(route.params.titulo);
-    const [local,setLocal] = useState(route.params.local);
+export default function addDiario({navigation,route}){
+    const [texto,setTexto] = useState(route.params.texto);
     const [data,setData] = useState(route.params.data);
+    const [local,setLocal] = useState(route.params.local);
+    
 
     function AlterarDiario(id,titulo,local,data){
-        Firebase.collection("titulo").doc(id).update({
+        Firebase.collection("diario").doc(id).update({
             titulo:titulo,
-            local:local,
+            texto:texto,
             data:data,
+            local:local
+            
 
         })
-        Alert.alert("Aviso", "Titulo alterado com sucesso.")
+        Alert.alert("Aviso", "Diario alterado com sucesso.")
         navigation.navigate("Home")
         }
         return(
             <View style={estilo.container}>
             <View>
-                <Text style={estilo.titulo}>Alterar dados do Titulo</Text>
+                <Text style={estilo.titulo}>Alterar o Titulo</Text>
             </View>
             <View>
                 <TextInput autoCapitalize = 'words' style={estilo.input} placeholder='Digite o titulo'
                 onChangeText={setDiario} value={diario}/>
+                <TextInput style={estilo.input} placeholder="Digite seu texto" onChangeText={setTexto}
+                value={texto}/>
                 <TextInput style={estilo.input} placeholder="Digite seu local" onChangeText={setLocal}
                 value={local}/>
                 <TextInput style={estilo.input} placeholder="Digite a data" onChangeText={setData}
@@ -34,7 +37,7 @@ export default function AlterarDiario({navigation,route}){
                <TouchableOpacity
                  style={estilo.btnenviar}
                  onPress={() => {
-                   alterarDiario(id,titulo,local,data);
+                AlterarDiario(id,titulo,local,data);
                  }}>
                  </TouchableOpacity>
             </View>

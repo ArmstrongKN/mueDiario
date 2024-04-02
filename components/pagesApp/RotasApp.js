@@ -13,7 +13,7 @@ export default function RotasApp() {
         <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={Home} option={{headerTintColor:'#9ac234'}} />
-        <Stack.Screen name="CadDiario" component={CadDiario} option={{headerTintColor:'#9ac234', title:'Cadastro do dia'}}  />
+        <Stack.Screen name="CadDiario" component={CadDiario} option={{headerTintColor:'#9ac234', title:'Cadastro do diario'}}  />
         <Stack.Screen name="AlterarDiario" component={AlterarDiario} option={{headerTintColor:'#9ac234' , title: 'Alterar registros'}}    />
         </Stack.Navigator>
         </NavigationContainer>
